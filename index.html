@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Ian Isaac Shammah ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    overflow-x: hidden;
+    color: white;
+    text-align: center;
+}
+
+/* Center screen */
+.center {
+    margin-top: 20%;
+}
+
+.hidden {
+    display: none;
+}
+
+input {
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background: white;
+    color: #ff4e8d;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #ffe6ef;
+}
+
+.container {
+    padding: 40px;
+}
+
+/* Slideshow */
+.slideshow {
+    margin-top: 20px;
+}
+
+.slideshow img {
+    width: 250px;
+    height: 300px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: white;
+    color: #ff4e8d;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+/* Floating Hearts */
+.heart {
+    position: fixed;
+    bottom: -10px;
+    font-size: 20px;
+    animation: floatUp 5s linear infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-800px); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="passwordScreen" class="center">
+    <h2>This website is only for Ian Isaac Shammah ❤️</h2>
+    <p>Enter our special password:</p>
+    <input type="password" id="passwordInput">
+    <br>
+    <button onclick="checkPassword()">Unlock My Heart 💖</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent" class="hidden">
+
+    <div class="container">
+        <h1>To My Love, Ian Isaac Shammah ❤️</h1>
+
+        <p id="daysCounter"></p>
+
+        <p id="typingText"></p>
+
+        <!-- Simple Slideshow (optional images) -->
+        <div class="slideshow">
+            <img id="slide" src="https://i.imgur.com/9bK0B8D.jpg">
+        </div>
+
+        <br>
+        <button onclick="showSurprise()">Click for a Surprise 💌</button>
+    </div>
+
+</div>
+
+<!-- Surprise Popup -->
+<div id="surprisePopup" class="popup hidden">
+    <div class="popup-content">
+        <h2>I Love You So Much Ian ❤️</h2>
+        <p>You are my forever and always.</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+</div>
+
+<script>
+// PASSWORD
+function checkPassword() {
+    const password = document.getElementById("passwordInput").value;
+
+    if (password === "My Love") {   // Change this!
+        document.getElementById("passwordScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+        startTyping();
+        startHearts();
+    } else {
+        alert("Wrong password 😢 Try again my love!");
+    }
+}
+
+// DAYS COUNTER (Change to your real date)
+const startDate = new Date("2025-06-14");
+const today = new Date();
+const diffTime = today - startDate;
+const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+document.getElementById("daysCounter").innerText =
+"We have been together for " + diffDays + " beautiful days ❤️";
+
+// TYPING EFFECT
+const text = "Ian, you are my happiness, my peace, my answered prayer. Loving you is the best thing that has ever happened to me ❤️";
+let index = 0;
+
+function startTyping() {
+    const typing = document.getElementById("typingText");
+
+    const interval = setInterval(() => {
+        if (index < text.length) {
+            typing.innerHTML += text.charAt(index);
+            index++;
+        } else {
+            clearInterval(interval);
+        }
+    }, 50);
+}
+
+// SIMPLE SLIDESHOW (Local images)
+const images = [
+"img1.jpg",
+"img2.jpg",
+"img3.jpg",
+"img5.jpg"
+];
+
+let slideIndex = 0;
+
+setInterval(() => {
+    slideIndex = (slideIndex + 1) % images.length;
+    document.getElementById("slide").src = images[slideIndex];
+}, 3000);
+
+// SURPRISE POPUP
+function showSurprise() {
+    document.getElementById("surprisePopup").style.display = "flex";
+}
+
+function closePopup() {
+    document.getElementById("surprisePopup").style.display = "none";
+}
+
+// FLOATING HEARTS
+function startHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }, 400);
+}
+</script>
+
+</body>
+</html>
